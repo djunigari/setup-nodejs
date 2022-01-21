@@ -55,8 +55,53 @@ yarn tsc
       "@models/*": ["models/*"],
       "@config/*": ["config/*"],
     }
+    //..
+    "include": [
+        "src/**/*"
+    ]
 
-    yarn add tsconfig-paths -D
+yarn add tsconfig-paths -D
 
-    -package.json add -r tsconfig-paths/register
+-package.json add -r tsconfig-paths/register
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules  --no-notify src/server.ts"
+
+yarn add eslint -D
+yarn eslint --init
+    -To check syntax, find problems, and enforce code style
+    -JavaScript modules (import/export)
+    -None of these
+    -Use a popular guide
+yarn add -D @typescript-eslint/eslint-plugin@latest eslint-config-standard@latest eslint@^7.12.1 eslint-plugin-import@^2.22.1 eslint-plugin-node@^11.1.0 eslint-plugin-promise@^4.2.1 || ^5.0.0 @typescript-eslint/parser@latest
+
+-VSCode add plugin: eslint
+
+-VS Code Setting.json add
+    "eslint.validate": [ "javascript", "javascriptreact", "html", "typescriptreact" ],
+    "eslint.format.enable": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
+
+yarn add jest -D
+yarn jest --init
+yarn add ts-jest -D
+yarn add @types/jest -D
+
+jest.config.ts add 
+    preset: 'ts-jest'
+
+new folder src/test
+new file FirstTest.spec.ts
+
+- .eslinttrc.json add 
+    "env": { 
+        //...
+        "jest": true
+    }
+
+-jest.config.ts add 
+    const { compilerOptions } = require('./tsconfig.json')
+    const { pathsToModuleNameMapper } = require('ts-jest')
+    moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
+    preset: 'ts-jest'
+
