@@ -105,3 +105,16 @@ new file FirstTest.spec.ts
     moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
     preset: 'ts-jest'
 
+
+yarn add -D @babel/cli @babel/core @babel/node @babel/preset-env @babel/preset-typescript babel-plugin-module-resolver
+
+new file babel.config.js
+
+-package.json add build script
+    "scripts": {
+        "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
+        "start": "node dist/server.js"
+
+new file .eslintignore add
+    dist
+    /*.js
